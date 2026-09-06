@@ -1,0 +1,1260 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 1 - Misi Berburu Kebutuhan</title>
+
+<style>
+
+    .top-menu {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.top-menu button {
+    border: none;
+    border-radius: 15px;
+
+    padding: 12px 20px;
+
+    background: white;
+    color: #1565C0;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 0 #90CAF9;
+}
+
+.top-menu button:hover {
+    transform: scale(1.03);
+}
+
+.top-menu button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #90CAF9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    min-height: 100vh;
+    background:
+        linear-gradient(#87CEEB 0%, #B9F2FF 55%, #8ED081 55%, #70BF65 100%);
+    color: #263238;
+    overflow-x: hidden;
+}
+
+/* =========================
+   DEKORASI LANGIT
+========================= */
+
+.cloud {
+    position: fixed;
+    font-size: 65px;
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cloud1 {
+    top: 40px;
+    left: 5%;
+}
+
+.cloud2 {
+    top: 110px;
+    right: 8%;
+}
+
+.sun {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    font-size: 85px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px 10px 50px;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: white;
+    border: 6px solid #FFD54F;
+    border-radius: 30px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 8px 0 #F9A825;
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(28px, 5vw, 48px);
+    color: #1565C0;
+    text-shadow: 3px 3px 0 #BBDEFB;
+}
+
+.header p {
+    margin: 8px 0 0;
+    font-size: 21px;
+    color: #546E7A;
+}
+
+.player-name {
+    color: #E65100;
+    font-weight: bold;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.status-card {
+    background: white;
+    border-radius: 22px;
+    padding: 12px 24px;
+    min-width: 170px;
+    text-align: center;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.12);
+    font-size: 18px;
+}
+
+.status-number {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: #1565C0;
+    margin-top: 3px;
+}
+
+.hearts {
+    font-size: 27px;
+    letter-spacing: 4px;
+}
+
+/* =========================
+   MISSION BAR
+========================= */
+
+.mission-bar {
+    background: #7B1FA2;
+    color: white;
+    border-radius: 22px;
+    padding: 13px 20px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 0 #4A148C;
+}
+
+/* =========================
+   MATERI
+========================= */
+
+.material {
+    background: white;
+    border-radius: 28px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.12);
+}
+
+.material-title {
+    text-align: center;
+    color: #E65100;
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.material-text {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.remember {
+    background: #FFF3CD;
+    border: 4px dashed #FFB300;
+    border-radius: 20px;
+    padding: 18px;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+.start-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 16px 35px;
+    border: none;
+    border-radius: 20px;
+    background: #43A047;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #2E7D32;
+}
+
+.start-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 1px 0 #2E7D32;
+}
+
+/* =========================
+   GAME CARD
+========================= */
+
+.game {
+    display: none;
+    background: white;
+    border-radius: 32px;
+    padding: 25px;
+    box-shadow: 0 9px 0 rgba(0,0,0,0.14);
+    text-align: center;
+}
+
+.game-title {
+    margin: 0;
+    color: #1565C0;
+    font-size: 31px;
+}
+
+.instruction {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.item-card {
+    width: 240px;
+    height: 210px;
+    margin: 15px auto;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #E3F2FD, #FFFFFF);
+    border: 6px solid #64B5F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 0 #42A5F5;
+}
+
+.item-emoji {
+    font-size: 100px;
+    line-height: 1;
+}
+
+.item-name {
+    font-size: 23px;
+    font-weight: bold;
+    color: #37474F;
+    margin-top: 10px;
+}
+
+.question {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 15px 0 20px;
+}
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.answer {
+    min-height: 110px;
+    border: none;
+    border-radius: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.15s;
+    padding: 20px;
+}
+
+.answer:hover {
+    transform: scale(1.04);
+}
+
+.answer:active {
+    transform: translateY(5px);
+}
+
+.need {
+    background: #66BB6A;
+    color: white;
+    box-shadow: 0 7px 0 #388E3C;
+}
+
+.want {
+    background: #FFCA28;
+    color: #5D4037;
+    box-shadow: 0 7px 0 #F9A825;
+}
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback {
+    min-height: 90px;
+    margin-top: 22px;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.correct {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: 4px solid #66BB6A;
+}
+
+.wrong {
+    background: #FFEBEE;
+    color: #C62828;
+    border: 4px solid #EF5350;
+}
+
+.next-btn {
+    display: none;
+    margin-top: 15px;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 18px;
+    background: #1565C0;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #0D47A1;
+}
+
+/* =========================
+   HASIL
+========================= */
+
+.result {
+    display: none;
+    background: white;
+    border-radius: 32px;
+    padding: 35px 20px;
+    text-align: center;
+    box-shadow: 0 9px 0 rgba(0,0,0,0.15);
+}
+
+.trophy {
+    font-size: 100px;
+    animation: bounce 1s infinite alternate;
+}
+
+.result h2 {
+    font-size: 36px;
+    color: #1565C0;
+}
+
+.result-name {
+    font-size: 24px;
+}
+
+.final-score {
+    font-size: 55px;
+    font-weight: bold;
+    color: #E65100;
+}
+
+.stars {
+    font-size: 50px;
+    margin: 10px;
+}
+
+.result-message {
+    font-size: 21px;
+    line-height: 1.5;
+    margin: 20px auto;
+    max-width: 700px;
+}
+
+.menu-btn,
+.repeat-btn {
+    border: none;
+    border-radius: 18px;
+    padding: 15px 28px;
+    margin: 7px;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-btn {
+    background: #43A047;
+    box-shadow: 0 5px 0 #2E7D32;
+}
+
+.repeat-btn {
+    background: #FB8C00;
+    box-shadow: 0 5px 0 #E65100;
+}
+
+/* =========================
+   ANIMASI
+========================= */
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+.pop {
+    animation: pop 0.45s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.6);
+    }
+
+    70% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-top: 25px;
+    font-size: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 650px) {
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .item-card {
+        width: 210px;
+        height: 190px;
+    }
+
+    .item-emoji {
+        font-size: 80px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    .answer {
+        min-height: 90px;
+        font-size: 21px;
+    }
+
+    .status-card {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cloud cloud1">☁️</div>
+<div class="cloud cloud2">☁️</div>
+<div class="sun">☀️</div>
+
+<div class="container">
+
+    <div class="top-menu">
+
+    <button onclick="kembaliMenu()">
+        🏠 Kembali ke Menu
+    </button>
+
+</div>
+
+    <div class="header">
+        <h1>🎒 MISI BERBURU KEBUTUHAN</h1>
+        <p>
+            🌟 Petualangan Ekonomi Daerahku 🌟
+        </p>
+        <p id="namaHeader"></p>
+    </div>
+
+    <div class="status">
+
+        <div class="status-card">
+            ⭐ POIN
+            <span class="status-number" id="score">
+                0
+            </span>
+        </div>
+
+        <div class="status-card">
+            🎯 MISI
+            <span class="status-number">
+                <span id="nomor">1</span>/10
+            </span>
+        </div>
+
+        <div class="status-card">
+            ❤️ NYAWA
+            <span class="status-number hearts" id="kesempatan">
+                ❤️❤️❤️
+            </span>
+        </div>
+
+    </div>
+
+    <div class="mission-bar">
+        🗺️ MISI 1: Kenali Mana Kebutuhan dan Mana Keinginan!
+    </div>
+
+
+    <!-- MATERI -->
+
+    <div class="material" id="material">
+
+        <h2 class="material-title">
+            📚 Sebelum Mulai...
+        </h2>
+
+        <div class="material-text">
+
+            <p>
+                👦👧 Setiap manusia memiliki sesuatu
+                yang diperlukan dalam kehidupan.
+            </p>
+
+            <p>
+                Hal yang diperlukan manusia disebut
+                <b>KEBUTUHAN</b>.
+            </p>
+
+            <p>
+                Contohnya:
+                🍚 makanan,
+                💧 air,
+                👕 pakaian,
+                🏠 tempat tinggal,
+                📚 pendidikan.
+            </p>
+
+        </div>
+
+        <div class="remember">
+
+            💡 <b>INGAT!</b>
+
+            <br><br>
+
+            Kebutuhan harus lebih diutamakan
+            daripada keinginan.
+
+            <br><br>
+
+            Sekarang waktunya membuktikan
+            apakah kamu sudah memahaminya! 😄
+
+        </div>
+
+        <button
+            class="start-btn"
+            onclick="mulaiGame()">
+
+            🚀 MULAI MISI!
+
+        </button>
+
+    </div>
+
+
+    <!-- GAME -->
+
+    <div class="game" id="game">
+
+        <h2 class="game-title">
+            🎯 PILIH JAWABANMU!
+        </h2>
+
+        <p class="instruction">
+            Perhatikan benda di bawah ini.
+            Kemudian tentukan apakah termasuk
+            <b>kebutuhan</b> atau <b>keinginan</b>.
+        </p>
+
+        <div class="item-card" id="itemCard">
+
+            <div class="item-emoji" id="itemEmoji">
+                🍚
+            </div>
+
+            <div class="item-name" id="itemName">
+                Nasi
+            </div>
+
+        </div>
+
+        <div class="question">
+            Ini termasuk...
+        </div>
+
+        <div class="answers">
+
+            <button
+                class="answer need"
+                onclick="jawab('kebutuhan')">
+
+                🏠
+                <br>
+                KEBUTUHAN
+
+            </button>
+
+            <button
+                class="answer want"
+                onclick="jawab('keinginan')">
+
+                🎮
+                <br>
+                KEINGINAN
+
+            </button>
+
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+
+        <button
+            id="nextBtn"
+            class="next-btn"
+            onclick="soalBerikutnya()">
+
+            ➡️ LANJUTKAN
+
+        </button>
+
+    </div>
+
+
+    <!-- HASIL -->
+
+    <div class="result" id="result">
+
+        <div class="trophy">
+            🏆
+        </div>
+
+        <h2>
+            MISI BERHASIL!
+        </h2>
+
+        <p
+            class="result-name"
+            id="hasilNama">
+        </p>
+
+        <p>
+            Kamu mendapatkan:
+        </p>
+
+        <div class="final-score" id="hasilScore">
+            0
+        </div>
+
+        <div class="stars" id="hasilBintang">
+            🌟🌟🌟
+        </div>
+
+        <div
+            class="result-message"
+            id="pesanHasil">
+        </div>
+
+        <button
+            class="menu-btn"
+            onclick="kembaliMenu()">
+
+            🏠 MENU UTAMA
+
+        </button>
+
+        <button
+            class="repeat-btn"
+            onclick="ulangGame()">
+
+            🔄 COBA LAGI
+
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+
+        🌟 Petualangan Ekonomi Daerahku
+        <br>
+        📚 IPAS Kelas 5 — Bab 2
+        <br><br>
+        Media pembelajaran untuk siswa SD
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   DATA SOAL
+========================================= */
+
+const soal = [
+
+    {
+        emoji: "🍚",
+        nama: "Nasi",
+        jawaban: "kebutuhan",
+        penjelasan:
+        "🍚 Makanan merupakan kebutuhan manusia agar tubuh mendapatkan energi."
+    },
+
+    {
+        emoji: "🎮",
+        nama: "Video Game",
+        jawaban: "keinginan",
+        penjelasan:
+        "🎮 Game dapat menjadi hiburan, tetapi bukan kebutuhan utama untuk hidup."
+    },
+
+    {
+        emoji: "💧",
+        nama: "Air Minum",
+        jawaban: "kebutuhan",
+        penjelasan:
+        "💧 Tubuh membutuhkan air agar dapat hidup dan berfungsi dengan baik."
+    },
+
+    {
+        emoji: "💎",
+        nama: "Perhiasan Mahal",
+        jawaban: "keinginan",
+        penjelasan:
+        "💎 Perhiasan bukan kebutuhan utama manusia."
+    },
+
+    {
+        emoji: "🏠",
+        nama: "Rumah",
+        jawaban: "kebutuhan",
+        penjelasan:
+        "🏠 Rumah merupakan tempat tinggal dan termasuk kebutuhan manusia."
+    },
+
+    {
+        emoji: "🍭",
+        nama: "Permen",
+        jawaban: "keinginan",
+        penjelasan:
+        "🍭 Permen boleh dinikmati, tetapi bukan kebutuhan utama."
+    },
+
+    {
+        emoji: "👕",
+        nama: "Pakaian",
+        jawaban: "kebutuhan",
+        penjelasan:
+        "👕 Pakaian dibutuhkan untuk melindungi tubuh."
+    },
+
+    {
+        emoji: "🎧",
+        nama: "Headset Mahal",
+        jawaban: "keinginan",
+        penjelasan:
+        "🎧 Headset dapat menjadi barang yang diinginkan, tetapi bukan kebutuhan utama."
+    },
+
+    {
+        emoji: "📚",
+        nama: "Buku Pelajaran",
+        jawaban: "kebutuhan",
+        penjelasan:
+        "📚 Buku pelajaran dapat diperlukan untuk menunjang kegiatan belajar."
+    },
+
+    {
+        emoji: "🧸",
+        nama: "Boneka",
+        jawaban: "keinginan",
+        penjelasan:
+        "🧸 Boneka dapat menjadi barang yang diinginkan untuk bermain atau hiburan."
+    }
+
+];
+
+
+/* =========================================
+   VARIABEL
+========================================= */
+
+let nomorSoal = 0;
+let score = 0;
+let kesempatan = 3;
+let sudahMenjawab = false;
+
+
+/* =========================================
+   NAMA
+========================================= */
+
+let namaSiswa =
+    localStorage.getItem("namaSiswa") || "Petualang";
+
+
+document.getElementById("namaHeader").innerHTML =
+    "👋 Petualang: <span class='player-name'>" +
+    namaSiswa +
+    "</span>";
+
+
+/* =========================================
+   MULAI GAME
+========================================= */
+
+function mulaiGame() {
+
+    document.getElementById("material").style.display =
+        "none";
+
+    document.getElementById("game").style.display =
+        "block";
+
+    tampilkanSoal();
+
+}
+
+
+/* =========================================
+   TAMPILKAN SOAL
+========================================= */
+
+function tampilkanSoal() {
+
+    sudahMenjawab = false;
+
+    const data = soal[nomorSoal];
+
+    document.getElementById("nomor").innerText =
+        nomorSoal + 1;
+
+    document.getElementById("itemEmoji").innerText =
+        data.emoji;
+
+    document.getElementById("itemName").innerText =
+        data.nama;
+
+    document.getElementById("feedback").innerHTML =
+        "";
+
+    document.getElementById("feedback").className =
+        "feedback";
+
+    document.getElementById("nextBtn").style.display =
+        "none";
+
+    document.getElementById("itemCard").classList.remove(
+        "pop",
+        "shake"
+    );
+
+    void document.getElementById("itemCard").offsetWidth;
+
+    document.getElementById("itemCard").classList.add(
+        "pop"
+    );
+
+}
+
+
+/* =========================================
+   JAWAB
+========================================= */
+
+function jawab(jawaban) {
+
+    if (sudahMenjawab) {
+        return;
+    }
+
+    sudahMenjawab = true;
+
+    const data = soal[nomorSoal];
+
+    const feedback =
+        document.getElementById("feedback");
+
+    const itemCard =
+        document.getElementById("itemCard");
+
+
+    if (jawaban === data.jawaban) {
+
+        score += 10;
+
+        document.getElementById("score").innerText =
+            score;
+
+        feedback.className =
+            "feedback correct";
+
+        feedback.innerHTML =
+            "🎉 <b>HEBAT! JAWABANMU BENAR!</b>" +
+            "<br>" +
+            "⭐ Kamu mendapat +10 poin!" +
+            "<br>" +
+            "<small>" +
+            data.penjelasan +
+            "</small>";
+
+        itemCard.classList.remove("pop");
+
+        void itemCard.offsetWidth;
+
+        itemCard.classList.add("pop");
+
+    } else {
+
+        kesempatan--;
+
+        updateNyawa();
+
+        feedback.className =
+            "feedback wrong";
+
+        feedback.innerHTML =
+            "😅 <b>HAMPIR BENAR!</b>" +
+            "<br>" +
+            "Yuk, ingat kembali materi kebutuhan." +
+            "<br>" +
+            "<small>" +
+            data.penjelasan +
+            "</small>";
+
+        itemCard.classList.remove("shake");
+
+        void itemCard.offsetWidth;
+
+        itemCard.classList.add("shake");
+
+    }
+
+
+    document.getElementById("nextBtn").style.display =
+        "inline-block";
+
+}
+
+
+/* =========================================
+   UPDATE NYAWA
+========================================= */
+
+function updateNyawa() {
+
+    let hearts = "";
+
+    for (let i = 0; i < kesempatan; i++) {
+        hearts += "❤️";
+    }
+
+    if (hearts === "") {
+        hearts = "💔";
+    }
+
+    document.getElementById("kesempatan").innerText =
+        hearts;
+
+}
+
+
+/* =========================================
+   SOAL BERIKUTNYA
+========================================= */
+
+function soalBerikutnya() {
+
+    nomorSoal++;
+
+    if (nomorSoal >= soal.length) {
+
+        selesaiGame();
+
+    } else {
+
+        tampilkanSoal();
+
+    }
+
+}
+
+
+/* =========================================
+   SELESAI
+========================================= */
+
+function selesaiGame() {
+
+    document.getElementById("game").style.display =
+        "none";
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    let bintang = 1;
+
+    if (score >= 70) {
+        bintang = 2;
+    }
+
+    if (score >= 90) {
+        bintang = 3;
+    }
+
+
+    let simbol = "";
+
+    for (let i = 0; i < bintang; i++) {
+        simbol += "🌟";
+    }
+
+
+    document.getElementById("hasilNama").innerHTML =
+        "🎉 Hebat, <b>" +
+        namaSiswa +
+        "</b>!";
+
+    document.getElementById("hasilScore").innerText =
+        score;
+
+    document.getElementById("hasilBintang").innerText =
+        simbol;
+
+
+    let pesan = "";
+
+    if (score >= 90) {
+
+        pesan =
+        "🏆 Luar biasa! Kamu sudah sangat memahami perbedaan antara kebutuhan dan keinginan. Kamu siap melanjutkan petualangan berikutnya!";
+
+    } else if (score >= 70) {
+
+        pesan =
+        "👏 Bagus sekali! Kamu sudah memahami materi kebutuhan manusia. Terus berlatih agar semakin hebat!";
+
+    } else {
+
+        pesan =
+        "💪 Jangan menyerah! Yuk pelajari kembali materi dan coba misi ini lagi.";
+
+    }
+
+
+    document.getElementById("pesanHasil").innerText =
+        pesan;
+
+
+    /* ===============================
+       SIMPAN PROGRES
+    =============================== */
+
+    localStorage.setItem(
+        "level1Selesai",
+        "true"
+    );
+
+    localStorage.setItem(
+        "bintang1",
+        bintang
+    );
+
+
+    /*
+       Agar total poin tidak
+       terus bertambah saat mengulang,
+       kita simpan skor terbaik.
+    */
+
+    let skorLama =
+        Number(
+            localStorage.getItem("level1Score")
+        ) || 0;
+
+
+    if (score > skorLama) {
+
+        localStorage.setItem(
+            "level1Score",
+            score
+        );
+
+    }
+
+
+    hitungTotalPoin();
+
+}
+
+
+/* =========================================
+   HITUNG TOTAL POIN
+========================================= */
+
+function hitungTotalPoin() {
+
+    let total = 0;
+
+    for (let i = 1; i <= 8; i++) {
+
+        total +=
+            Number(
+                localStorage.getItem(
+                    "level" + i + "Score"
+                )
+            ) || 0;
+
+    }
+
+    localStorage.setItem(
+        "totalPoin",
+        total
+    );
+
+}
+
+
+/* =========================================
+   ULANG GAME
+========================================= */
+
+function ulangGame() {
+
+    nomorSoal = 0;
+    score = 0;
+    kesempatan = 3;
+    sudahMenjawab = false;
+
+    document.getElementById("score").innerText =
+        "0";
+
+    document.getElementById("kesempatan").innerText =
+        "❤️❤️❤️";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    document.getElementById("game").style.display =
+        "block";
+
+    tampilkanSoal();
+
+}
+
+
+/* =========================================
+   MENU UTAMA
+========================================= */
+
+function kembaliMenu() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
+```

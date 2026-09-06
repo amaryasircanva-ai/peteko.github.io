@@ -1,0 +1,1661 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Level 2 - Kegiatan Ekonomi Masyarakat</title>
+
+<style>
+
+.top-menu {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.top-menu button {
+    border: none;
+    border-radius: 15px;
+
+    padding: 12px 20px;
+
+    background: white;
+    color: #1565C0;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 0 #90CAF9;
+}
+
+.top-menu button:hover {
+    transform: scale(1.03);
+}
+
+.top-menu button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #90CAF9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            #81D4FA 0%,
+            #B3E5FC 48%,
+            #A5D66A 48%,
+            #7CB342 100%
+        );
+
+    color: #263238;
+    overflow-x: hidden;
+}
+
+/* =========================
+   DEKORASI
+========================= */
+
+.sun {
+    position: fixed;
+    right: 25px;
+    top: 20px;
+    font-size: 80px;
+    z-index: 0;
+}
+
+.cloud {
+    position: fixed;
+    font-size: 65px;
+    opacity: 0.85;
+    z-index: 0;
+}
+
+.cloud1 {
+    left: 5%;
+    top: 45px;
+}
+
+.cloud2 {
+    right: 22%;
+    top: 110px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: auto;
+
+    padding: 20px 10px 50px;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: white;
+
+    border: 6px solid #66BB6A;
+
+    border-radius: 30px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 0 #388E3C;
+
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    margin: 0;
+
+    color: #2E7D32;
+
+    font-size:
+        clamp(28px, 5vw, 47px);
+
+    text-shadow:
+        3px 3px 0 #C8E6C9;
+}
+
+.header p {
+    font-size: 21px;
+    margin: 8px;
+}
+
+.player {
+    color: #3200e6;
+    font-weight: bold;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+}
+
+.status-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 12px 25px;
+
+    min-width: 170px;
+
+    text-align: center;
+
+    box-shadow:
+        0 6px 0 rgba(0,0,0,0.12);
+
+    font-size: 18px;
+}
+
+.status-number {
+    display: block;
+
+    font-size: 29px;
+
+    font-weight: bold;
+
+    color: #2E7D32;
+
+    margin-top: 4px;
+}
+
+/* =========================
+   MISSION
+========================= */
+
+.mission {
+    background: #EF6C00;
+
+    color: white;
+
+    border-radius: 22px;
+
+    padding: 14px 20px;
+
+    text-align: center;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 6px 0 #E65100;
+}
+
+/* =========================
+   MATERI
+========================= */
+
+.material {
+    background: white;
+
+    border-radius: 30px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 0 rgba(0,0,0,0.13);
+}
+
+.material h2 {
+    text-align: center;
+
+    color: #2E7D32;
+
+    font-size: 30px;
+}
+
+.material p {
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+.economic-flow {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 20px 0;
+}
+
+.flow-card {
+    background: #E8F5E9;
+
+    border: 4px solid #66BB6A;
+
+    border-radius: 20px;
+
+    padding: 15px;
+
+    min-width: 140px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+.flow-icon {
+    font-size: 50px;
+}
+
+.arrow {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.remember {
+    background: #FFF8E1;
+
+    border: 4px dashed #FFB300;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    font-size: 19px;
+}
+
+.start-btn {
+    display: block;
+
+    margin: 20px auto 0;
+
+    border: none;
+
+    border-radius: 20px;
+
+    padding: 16px 35px;
+
+    background: #43A047;
+
+    color: white;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #2E7D32;
+}
+
+.start-btn:active {
+    transform: translateY(5px);
+
+    box-shadow:
+        0 1px 0 #2E7D32;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game {
+    display: none;
+
+    background: white;
+
+    border-radius: 32px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 9px 0 rgba(0,0,0,0.14);
+
+    text-align: center;
+}
+
+.game-title {
+    color: #2E7D32;
+
+    font-size: 30px;
+
+    margin-top: 0;
+}
+
+.instruction {
+    font-size: 19px;
+}
+
+/* =========================
+   LOCATION
+========================= */
+
+.location {
+    width: 250px;
+
+    min-height: 180px;
+
+    margin: 18px auto;
+
+    background:
+        linear-gradient(
+            #E3F2FD 0%,
+            #E3F2FD 65%,
+            #A5D66A 65%,
+            #7CB342 100%
+        );
+
+    border: 6px solid #42A5F5;
+
+    border-radius: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow:
+        0 8px 0 #1E88E5;
+}
+
+.location-icon {
+    font-size: 90px;
+}
+
+.location-name {
+    font-size: 23px;
+
+    font-weight: bold;
+
+    color: #37474F;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    max-width: 850px;
+
+    margin: 20px auto;
+}
+
+.option {
+    border: none;
+
+    border-radius: 22px;
+
+    min-height: 105px;
+
+    padding: 15px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+.option:hover {
+    transform: scale(1.04);
+}
+
+.option:active {
+    transform: translateY(5px);
+}
+
+.option1 {
+    background: #81C784;
+
+    color: white;
+
+    box-shadow:
+        0 6px 0 #388E3C;
+}
+
+.option2 {
+    background: #64B5F6;
+
+    color: white;
+
+    box-shadow:
+        0 6px 0 #1976D2;
+}
+
+.option3 {
+    background: #FFCA28;
+
+    color: #5D4037;
+
+    box-shadow:
+        0 6px 0 #F9A825;
+}
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback {
+    min-height: 85px;
+
+    margin-top: 20px;
+
+    border-radius: 20px;
+
+    padding: 15px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.correct {
+    background: #E8F5E9;
+
+    color: #2E7D32;
+
+    border: 4px solid #66BB6A;
+}
+
+.wrong {
+    background: #FFEBEE;
+
+    color: #C62828;
+
+    border: 4px solid #EF5350;
+}
+
+.next-btn {
+    display: none;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 15px 32px;
+
+    background: #1565C0;
+
+    color: white;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #0D47A1;
+}
+
+/* =========================
+   HASIL
+========================= */
+
+.result {
+    display: none;
+
+    background: white;
+
+    border-radius: 32px;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 9px 0 rgba(0,0,0,0.15);
+}
+
+.trophy {
+    font-size: 100px;
+
+    animation:
+        bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-15px);
+    }
+}
+
+.result h2 {
+    color: #2E7D32;
+
+    font-size: 36px;
+}
+
+.final-score {
+    font-size: 55px;
+
+    font-weight: bold;
+
+    color: #E65100;
+}
+
+.stars {
+    font-size: 50px;
+
+    margin: 10px;
+}
+
+.result-message {
+    max-width: 700px;
+
+    margin: 20px auto;
+
+    font-size: 21px;
+
+    line-height: 1.5;
+}
+
+.menu-btn,
+.repeat-btn {
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 15px 28px;
+
+    margin: 7px;
+
+    color: white;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.menu-btn {
+    background: #43A047;
+
+    box-shadow:
+        0 5px 0 #2E7D32;
+}
+
+.repeat-btn {
+    background: #FB8C00;
+
+    box-shadow:
+        0 5px 0 #E65100;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+
+    color: white;
+
+    font-weight: bold;
+
+    margin-top: 25px;
+
+    font-size: 16px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 700px) {
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .location {
+        width: 220px;
+    }
+
+    .status-card {
+        width: 100%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sun">☀️</div>
+<div class="cloud cloud1">☁️</div>
+<div class="cloud cloud2">☁️</div>
+
+
+<div class="container">
+
+<div class="top-menu">
+
+    <button onclick="kembaliMenu()">
+        🏠 Kembali ke Menu
+    </button>
+
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>
+        🌾 LEVEL 2
+    </h1>
+
+    <p>
+        <b>KEGIATAN EKONOMI MASYARAKAT</b>
+    </p>
+
+    <p id="namaHeader"></p>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="status">
+
+    <div class="status-card">
+
+        ⭐ POIN
+
+        <span
+            class="status-number"
+            id="score">
+
+            0
+
+        </span>
+
+    </div>
+
+
+    <div class="status-card">
+
+        🎯 MISI
+
+        <span class="status-number">
+
+            <span id="nomor">
+                1
+            </span>
+
+            /10
+
+        </span>
+
+    </div>
+
+
+    <div class="status-card">
+
+        🏆 LEVEL
+
+        <span
+            class="status-number">
+
+            2 / 8
+
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="mission">
+
+    🗺️ MISI 2:
+    Jelajahi kegiatan ekonomi masyarakat!
+
+</div>
+
+
+<!-- MATERI -->
+
+<div
+    class="material"
+    id="material">
+
+    <h2>
+        📚 Yuk Kenali Kegiatan Ekonomi!
+    </h2>
+
+    <p>
+
+        Manusia melakukan berbagai kegiatan
+        untuk memenuhi kebutuhan hidup.
+
+    </p>
+
+    <p>
+
+        Kegiatan ekonomi masyarakat antara lain
+        <b>produksi, distribusi, dan konsumsi.</b>
+
+    </p>
+
+
+    <div class="economic-flow">
+
+
+        <div class="flow-card">
+
+            <div class="flow-icon">
+                👨‍🌾
+            </div>
+
+            PRODUKSI
+
+            <br>
+
+            Menghasilkan barang
+
+        </div>
+
+
+        <div class="arrow">
+            ➡️
+        </div>
+
+
+        <div class="flow-card">
+
+            <div class="flow-icon">
+                🚚
+            </div>
+
+            DISTRIBUSI
+
+            <br>
+
+            Menyalurkan barang
+
+        </div>
+
+
+        <div class="arrow">
+            ➡️
+        </div>
+
+
+        <div class="flow-card">
+
+            <div class="flow-icon">
+                🛒
+            </div>
+
+            KONSUMSI
+
+            <br>
+
+            Menggunakan barang
+
+        </div>
+
+    </div>
+
+
+    <div class="remember">
+
+        💡 <b>INGAT!</b>
+
+        <br><br>
+
+        Barang yang dihasilkan harus sampai
+        kepada orang yang membutuhkan.
+
+        <br><br>
+
+        Karena itu kegiatan ekonomi saling
+        berhubungan. 🤝
+
+    </div>
+
+
+    <button
+        class="start-btn"
+        onclick="mulaiGame()">
+
+        🚀 MULAI JELAJAH!
+
+    </button>
+
+</div>
+
+
+<!-- GAME -->
+
+<div
+    class="game"
+    id="game">
+
+
+    <h2 class="game-title">
+
+        🔎 SIAPA MELAKUKAN APA?
+
+    </h2>
+
+
+    <p class="instruction">
+
+        Perhatikan tempat atau kegiatan
+        di bawah ini.
+
+        <br>
+
+        Pilih kegiatan ekonomi yang tepat!
+
+    </p>
+
+
+    <div class="location">
+
+        <div
+            class="location-icon"
+            id="locationIcon">
+
+            🌾
+
+        </div>
+
+        <div
+            class="location-name"
+            id="locationName">
+
+            Sawah
+
+        </div>
+
+    </div>
+
+
+    <div class="question">
+
+        Kegiatan ekonomi yang paling tepat adalah...
+
+    </div>
+
+
+    <div class="options">
+
+        <button
+            class="option option1"
+            onclick="jawab('produksi')">
+
+            🏭
+            <br>
+            PRODUKSI
+
+        </button>
+
+
+        <button
+            class="option option2"
+            onclick="jawab('distribusi')">
+
+            🚚
+            <br>
+            DISTRIBUSI
+
+        </button>
+
+
+        <button
+            class="option option3"
+            onclick="jawab('konsumsi')">
+
+            🛒
+            <br>
+            KONSUMSI
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="feedback"
+        class="feedback">
+
+    </div>
+
+
+    <button
+        id="nextBtn"
+        class="next-btn"
+        onclick="soalBerikutnya()">
+
+        ➡️ LANJUTKAN
+
+    </button>
+
+</div>
+
+
+<!-- HASIL -->
+
+<div
+    class="result"
+    id="result">
+
+
+    <div class="trophy">
+        🏆
+    </div>
+
+
+    <h2>
+        MISI 2 SELESAI!
+    </h2>
+
+
+    <p id="hasilNama"></p>
+
+
+    <p>
+        Poin kamu:
+    </p>
+
+
+    <div
+        class="final-score"
+        id="hasilScore">
+
+        0
+
+    </div>
+
+
+    <div
+        class="stars"
+        id="hasilBintang">
+
+        🌟🌟🌟
+
+    </div>
+
+
+    <div
+        class="result-message"
+        id="pesanHasil">
+
+    </div>
+
+
+    <button
+        class="menu-btn"
+        onclick="kembaliMenu()">
+
+        🏠 MENU UTAMA
+
+    </button>
+
+
+    <button
+        class="repeat-btn"
+        onclick="ulangGame()">
+
+        🔄 COBA LAGI
+
+    </button>
+
+
+</div>
+
+
+<div class="footer">
+
+    🌟 Petualangan Ekonomi Daerahku
+
+    <br>
+
+    📚 IPAS Kelas 5 — Bab 2
+
+    <br><br>
+
+    Level 2 — Kegiatan Ekonomi Masyarakat
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+   DATA SOAL
+========================================= */
+
+const soal = [
+
+    {
+        icon: "🌾",
+        nama: "Sawah",
+        jawaban: "produksi",
+
+        penjelasan:
+        "🌾 Petani menghasilkan padi di sawah. Kegiatan menghasilkan barang disebut produksi."
+    },
+
+
+    {
+        icon: "🚚",
+        nama: "Truk Pengangkut",
+        jawaban: "distribusi",
+
+        penjelasan:
+        "🚚 Truk dapat digunakan untuk mengantarkan barang dari produsen menuju tempat penjualan."
+    },
+
+
+    {
+        icon: "🛒",
+        nama: "Orang Berbelanja",
+        jawaban: "konsumsi",
+
+        penjelasan:
+        "🛒 Ketika seseorang membeli dan menggunakan barang untuk memenuhi kebutuhan, ia melakukan konsumsi."
+    },
+
+
+    {
+        icon: "🏭",
+        nama: "Pabrik",
+        jawaban: "produksi",
+
+        penjelasan:
+        "🏭 Pabrik menghasilkan berbagai barang. Menghasilkan barang merupakan kegiatan produksi."
+    },
+
+
+    {
+        icon: "📦",
+        nama: "Mengirim Barang",
+        jawaban: "distribusi",
+
+        penjelasan:
+        "📦 Mengirim barang dari produsen ke penjual atau konsumen merupakan kegiatan distribusi."
+    },
+
+
+    {
+        icon: "🍚",
+        nama: "Memakan Nasi",
+        jawaban: "konsumsi",
+
+        penjelasan:
+        "🍚 Menggunakan atau menghabiskan barang untuk memenuhi kebutuhan disebut konsumsi."
+    },
+
+
+    {
+        icon: "👨‍🌾",
+        nama: "Petani Menanam Padi",
+        jawaban: "produksi",
+
+        penjelasan:
+        "👨‍🌾 Petani menghasilkan bahan pangan. Kegiatan menghasilkan barang disebut produksi."
+    },
+
+
+    {
+        icon: "🏪",
+        nama: "Pedagang Menyalurkan Barang",
+        jawaban: "distribusi",
+
+        penjelasan:
+        "🏪 Pedagang membantu menyalurkan barang agar sampai kepada konsumen."
+    },
+
+
+    {
+        icon: "👨‍👩‍👧",
+        nama: "Keluarga Menggunakan Barang",
+        jawaban: "konsumsi",
+
+        penjelasan:
+        "👨‍👩‍👧 Keluarga yang menggunakan barang untuk memenuhi kebutuhan sedang melakukan konsumsi."
+    },
+
+
+    {
+        icon: "🐟",
+        nama: "Nelayan Menangkap Ikan",
+        jawaban: "produksi",
+
+        penjelasan:
+        "🐟 Nelayan menghasilkan atau memperoleh ikan untuk memenuhi kebutuhan masyarakat."
+    }
+
+];
+
+
+/* =========================================
+   VARIABEL
+========================================= */
+
+let nomorSoal = 0;
+
+let score = 0;
+
+let sudahMenjawab = false;
+
+
+/* =========================================
+   NAMA
+========================================= */
+
+let namaSiswa =
+    localStorage.getItem("namaSiswa") ||
+    "Petualang";
+
+
+document.getElementById(
+    "namaHeader"
+).innerHTML =
+
+    "👋 Petualang: " +
+
+    "<span class='player'>" +
+
+    namaSiswa +
+
+    "</span>";
+
+
+/* =========================================
+   MULAI GAME
+========================================= */
+
+function mulaiGame() {
+
+    document.getElementById(
+        "material"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "game"
+    ).style.display = "block";
+
+
+    tampilkanSoal();
+
+}
+
+
+/* =========================================
+   TAMPILKAN SOAL
+========================================= */
+
+function tampilkanSoal() {
+
+    sudahMenjawab = false;
+
+
+    const data =
+        soal[nomorSoal];
+
+
+    document.getElementById(
+        "nomor"
+    ).innerText =
+        nomorSoal + 1;
+
+
+    document.getElementById(
+        "locationIcon"
+    ).innerText =
+        data.icon;
+
+
+    document.getElementById(
+        "locationName"
+    ).innerText =
+        data.nama;
+
+
+    document.getElementById(
+        "feedback"
+    ).innerHTML =
+        "";
+
+
+    document.getElementById(
+        "feedback"
+    ).className =
+        "feedback";
+
+
+    document.getElementById(
+        "nextBtn"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   JAWAB
+========================================= */
+
+function jawab(jawaban) {
+
+    if (sudahMenjawab) {
+        return;
+    }
+
+
+    sudahMenjawab = true;
+
+
+    const data =
+        soal[nomorSoal];
+
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    if (jawaban === data.jawaban) {
+
+        score += 10;
+
+
+        document.getElementById(
+            "score"
+        ).innerText =
+            score;
+
+
+        feedback.className =
+            "feedback correct";
+
+
+        feedback.innerHTML =
+
+            "🎉 <b>HEBAT! BENAR!</b>" +
+
+            "<br>" +
+
+            "⭐ +10 poin" +
+
+            "<br>" +
+
+            "<small>" +
+
+            data.penjelasan +
+
+            "</small>";
+
+    }
+
+    else {
+
+        feedback.className =
+            "feedback wrong";
+
+
+        feedback.innerHTML =
+
+            "😅 <b>BELUM TEPAT!</b>" +
+
+            "<br>" +
+
+            "<small>" +
+
+            data.penjelasan +
+
+            "</small>";
+
+    }
+
+
+    document.getElementById(
+        "nextBtn"
+    ).style.display =
+        "inline-block";
+
+}
+
+
+/* =========================================
+   SOAL BERIKUTNYA
+========================================= */
+
+function soalBerikutnya() {
+
+    nomorSoal++;
+
+
+    if (
+        nomorSoal >=
+        soal.length
+    ) {
+
+        selesaiGame();
+
+    }
+
+    else {
+
+        tampilkanSoal();
+
+    }
+
+}
+
+
+/* =========================================
+   SELESAI
+========================================= */
+
+function selesaiGame() {
+
+    document.getElementById(
+        "game"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "block";
+
+
+    let bintang = 1;
+
+
+    if (score >= 70) {
+        bintang = 2;
+    }
+
+
+    if (score >= 90) {
+        bintang = 3;
+    }
+
+
+    let simbol = "";
+
+
+    for (
+        let i = 0;
+        i < bintang;
+        i++
+    ) {
+
+        simbol += "🌟";
+
+    }
+
+
+    document.getElementById(
+        "hasilNama"
+    ).innerHTML =
+
+        "🎉 Hebat, <b>" +
+
+        namaSiswa +
+
+        "</b>!";
+
+
+    document.getElementById(
+        "hasilScore"
+    ).innerText =
+        score;
+
+
+    document.getElementById(
+        "hasilBintang"
+    ).innerText =
+        simbol;
+
+
+    let pesan = "";
+
+
+    if (score >= 90) {
+
+        pesan =
+
+            "🏆 Luar biasa! " +
+
+            "Kamu sudah memahami bahwa kegiatan ekonomi saling berhubungan, mulai dari produksi, distribusi, sampai konsumsi.";
+
+    }
+
+    else if (score >= 70) {
+
+        pesan =
+
+            "👏 Bagus! Kamu sudah mulai memahami berbagai kegiatan ekonomi masyarakat.";
+
+    }
+
+    else {
+
+        pesan =
+
+            "💪 Jangan menyerah! Pelajari kembali materi produksi, distribusi, dan konsumsi lalu coba lagi.";
+
+    }
+
+
+    document.getElementById(
+        "pesanHasil"
+    ).innerText =
+        pesan;
+
+
+    /* ===============================
+       SIMPAN PROGRES
+    =============================== */
+
+    localStorage.setItem(
+        "level2Selesai",
+        "true"
+    );
+
+
+    localStorage.setItem(
+        "bintang2",
+        bintang
+    );
+
+
+    /*
+       Simpan skor terbaik Level 2
+    */
+
+    let skorLama =
+
+        Number(
+            localStorage.getItem(
+                "level2Score"
+            )
+        ) || 0;
+
+
+    if (
+        score >
+        skorLama
+    ) {
+
+        localStorage.setItem(
+            "level2Score",
+            score
+        );
+
+    }
+
+
+    hitungTotalPoin();
+
+}
+
+
+/* =========================================
+   TOTAL POIN
+========================================= */
+
+function hitungTotalPoin() {
+
+    let total = 0;
+
+
+    for (
+        let i = 1;
+        i <= 8;
+        i++
+    ) {
+
+        total +=
+
+            Number(
+                localStorage.getItem(
+                    "level" +
+                    i +
+                    "Score"
+                )
+            ) || 0;
+
+    }
+
+
+    localStorage.setItem(
+        "totalPoin",
+        total
+    );
+
+}
+
+
+/* =========================================
+   ULANG
+========================================= */
+
+function ulangGame() {
+
+    nomorSoal = 0;
+
+    score = 0;
+
+    sudahMenjawab = false;
+
+
+    document.getElementById(
+        "score"
+    ).innerText =
+        "0";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "game"
+    ).style.display =
+        "block";
+
+
+    tampilkanSoal();
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+function kembaliMenu() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
+```
