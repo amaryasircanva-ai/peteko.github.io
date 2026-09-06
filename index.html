@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petualangan Ekonomi Daerahku</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    min-height: 100vh;
+    color: #263238;
+}
+
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 10px 40px;
+}
+
+.header {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(28px, 5vw, 48px);
+}
+
+.header p {
+    font-size: 20px;
+    margin: 10px 0 0;
+}
+
+.player-box {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.player-box input {
+    width: 80%;
+    max-width: 500px;
+    padding: 15px;
+    border: 3px solid #90caf9;
+    border-radius: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.save-btn {
+    margin-top: 12px;
+    padding: 14px 28px;
+    border-radius: 15px;
+    background: #2196f3;
+    color: white;
+    font-size: 18px;
+}
+
+button:hover {
+    transform: scale(1.04);
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.info-card {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+    min-width: 180px;
+}
+
+.info-card .number {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.level {
+    background: white;
+    border-radius: 22px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.level-icon {
+    font-size: 55px;
+}
+
+.level h2 {
+    margin: 8px 0;
+    font-size: 22px;
+}
+
+.level p {
+    margin: 5px 0 12px;
+    color: #546e7a;
+}
+
+.play-btn {
+    padding: 13px;
+    border-radius: 14px;
+    background: #43a047;
+    color: white;
+    font-size: 17px;
+}
+
+.locked {
+    opacity: 0.65;
+}
+
+.lock-btn {
+    padding: 13px;
+    border-radius: 14px;
+    background: #b0bec5;
+    color: white;
+    font-size: 17px;
+    cursor: not-allowed;
+}
+
+.reset {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.reset button {
+    background: #ef5350;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: white;
+    font-size: 15px;
+}
+
+.progress-box {
+    margin-top: 15px;
+}
+
+.progress-bg {
+    width: 100%;
+    height: 18px;
+    background: #e0e0e0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #43a047;
+    transition: 0.5s;
+}
+
+@media(max-width:600px) {
+    .player-box input {
+        width: 100%;
+    }
+
+    .info-card {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🌟 PETUALANGAN EKONOMI DAERAHKU 🌟</h1>
+        <p>Bab 2 IPAS Kelas 5 — <b>Majulah Daerahku!</b></p>
+    </div>
+
+    <div class="player-box">
+        <h2>👋 Selamat Datang!</h2>
+        <p>Masukkan nama kamu sebelum memulai petualangan.</p>
+
+        <input type="text" id="namaSiswa" placeholder="Ketik nama kamu...">
+
+        <br>
+
+        <button class="save-btn" onclick="simpanNama()">
+            🚀 Mulai Petualangan
+        </button>
+
+        <div class="progress-box">
+            <p id="sapaan">Belum ada nama siswa.</p>
+
+            <div class="progress-bg">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <p id="progressText">Kemajuan: 0 / 8 Level</p>
+        </div>
+    </div>
+
+    <div class="info">
+
+        <div class="info-card">
+            <div>⭐ Total Poin</div>
+            <div class="number" id="totalPoin">0</div>
+        </div>
+
+        <div class="info-card">
+            <div>🏆 Level Selesai</div>
+            <div class="number" id="levelSelesai">0</div>
+        </div>
+
+        <div class="info-card">
+            <div>🌟 Bintang</div>
+            <div class="number" id="totalBintang">0</div>
+        </div>
+
+    </div>
+
+    <div class="levels">
+
+        <!-- LEVEL 1 -->
+        <div class="level">
+            <div>
+                <div class="level-icon">🏠</div>
+                <h2>Level 1</h2>
+                <p>Kebutuhan Manusia</p>
+            </div>
+
+            <button class="play-btn" onclick="bukaLevel(1)">
+                ▶️ Mulai Level
+            </button>
+        </div>
+
+        <!-- LEVEL 2 -->
+        <div class="level" id="level2">
+            <div>
+                <div class="level-icon">🌾</div>
+                <h2>Level 2</h2>
+                <p>Kegiatan Ekonomi Masyarakat</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 3 -->
+        <div class="level" id="level3">
+            <div>
+                <div class="level-icon">🏭</div>
+                <h2>Level 3</h2>
+                <p>Produksi</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 4 -->
+        <div class="level" id="level4">
+            <div>
+                <div class="level-icon">🚚</div>
+                <h2>Level 4</h2>
+                <p>Distribusi</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 5 -->
+        <div class="level" id="level5">
+            <div>
+                <div class="level-icon">🛒</div>
+                <h2>Level 5</h2>
+                <p>Konsumsi</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 6 -->
+        <div class="level" id="level6">
+            <div>
+                <div class="level-icon">👨‍🌾</div>
+                <h2>Level 6</h2>
+                <p>Pelaku Ekonomi</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 7 -->
+        <div class="level" id="level7">
+            <div>
+                <div class="level-icon">🌳</div>
+                <h2>Level 7</h2>
+                <p>Potensi Daerah</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+        <!-- LEVEL 8 -->
+        <div class="level" id="level8">
+            <div>
+                <div class="level-icon">🧠</div>
+                <h2>Level 8</h2>
+                <p>Menjadi Pelaku Ekonomi yang Bijak</p>
+            </div>
+
+            <button class="lock-btn">
+                🔒 Terkunci
+            </button>
+        </div>
+
+    </div>
+
+    <div class="reset">
+        <button onclick="resetData()">
+            🗑️ Reset Data Permainan
+        </button>
+    </div>
+
+    <div class="footer">
+        <p>🌟 Petualangan Ekonomi Daerahku</p>
+        <p>Media Pembelajaran IPAS Kelas 5</p>
+        <p>Dibuat untuk pembelajaran yang menyenangkan ❤️</p>
+    </div>
+
+</div>
+
+<script>
+
+let nama = localStorage.getItem("namaSiswa");
+
+function simpanNama() {
+
+    let input = document.getElementById("namaSiswa").value.trim();
+
+    if (input === "") {
+        alert("Silakan masukkan nama terlebih dahulu.");
+        return;
+    }
+
+    localStorage.setItem("namaSiswa", input);
+
+    nama = input;
+
+    tampilkanData();
+
+    alert("Selamat datang, " + input + "! 🚀");
+
+    bukaLevel(1);
+}
+
+function bukaLevel(level) {
+
+    const namaFile = {
+
+        1: "level1-kebutuhan.html",
+
+        2: "level2-kegiatan-ekonomi.html",
+
+        3: "level3-produksi.html",
+
+        4: "level4-distribusi.html",
+
+        5: "level5-konsumsi.html",
+
+        6: "level6-pelaku-ekonomi.html",
+
+        7: "level7-potensi-daerah.html",
+
+        8: "level8-ekonomi-bijak.html"
+
+    };
+
+    if (level === 1) {
+
+        window.location.href =
+            namaFile[1];
+
+        return;
+
+    }
+
+    const selesaiSebelumnya =
+        localStorage.getItem(
+            "level" + (level - 1) + "Selesai"
+        );
+
+    if (selesaiSebelumnya === "true") {
+
+        window.location.href =
+            namaFile[level];
+
+    } else {
+
+        alert(
+            "🔒 Level ini masih terkunci!\n\n" +
+            "Selesaikan level sebelumnya terlebih dahulu."
+        );
+
+    }
+
+}
+
+function tampilkanData() {
+
+    let namaTersimpan =
+        localStorage.getItem("namaSiswa");
+
+    if (namaTersimpan) {
+
+        document.getElementById("namaSiswa").value =
+            namaTersimpan;
+
+        document.getElementById("sapaan").innerHTML =
+            "👋 Halo, <b>" + namaTersimpan + "</b>! " +
+            "Ayo lanjutkan petualanganmu.";
+
+    }
+
+    let totalPoin =
+        Number(localStorage.getItem("totalPoin")) || 0;
+
+    document.getElementById("totalPoin").innerText =
+        totalPoin;
+
+    let selesai = 0;
+    let bintang = 0;
+
+    for (let i = 1; i <= 8; i++) {
+
+        if (
+            localStorage.getItem(
+                "level" + i + "Selesai"
+            ) === "true"
+        ) {
+            selesai++;
+        }
+
+        bintang +=
+            Number(
+                localStorage.getItem(
+                    "bintang" + i
+                )
+            ) || 0;
+    }
+
+    document.getElementById("levelSelesai").innerText =
+        selesai;
+
+    document.getElementById("totalBintang").innerText =
+        bintang;
+
+    let persen = (selesai / 8) * 100;
+
+    document.getElementById("progressFill").style.width =
+        persen + "%";
+
+    document.getElementById("progressText").innerText =
+        "Kemajuan: " + selesai + " / 8 Level";
+
+    // Membuka level berdasarkan progres
+    for (let i = 2; i <= 8; i++) {
+
+        let sebelumnya =
+            localStorage.getItem(
+                "level" + (i - 1) + "Selesai"
+            );
+
+        let levelElement =
+            document.getElementById("level" + i);
+
+        if (sebelumnya === "true") {
+
+            levelElement.classList.remove("locked");
+
+            let tombol =
+                levelElement.querySelector("button");
+
+            tombol.className = "play-btn";
+
+            tombol.innerHTML =
+                "▶️ Mulai Level";
+
+            tombol.onclick = function() {
+                bukaLevel(i);
+            };
+        }
+    }
+}
+
+function resetData() {
+
+    let yakin = confirm(
+        "Apakah kamu yakin ingin menghapus semua data permainan?"
+    );
+
+    if (yakin) {
+
+        localStorage.clear();
+
+        location.reload();
+    }
+}
+
+tampilkanData();
+
+</script>
+
+</body>
+</html>
